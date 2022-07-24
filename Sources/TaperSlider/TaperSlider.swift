@@ -10,7 +10,14 @@
 
 import SwiftUI
 
-
+///A wrapper around Slider() that takes a TaperProfile to create a variable stride.
+///
+///
+///- Parameter value:A binding to the value to be updated by the slider.
+///- Parameter outputRange: Optional. The range of values the slider will take in and output.  Default is 0...1
+///- Parameter taperStyle: The curve of the rate of change for the slider, a ``TaperProfile.TaperStyle``
+///- Parameter taperInputRange: Optional. The part of the `taperStyle` curve that is the most interesting. Built in TaperStyles have their own defaults.
+///- Parameter onEditingChanged: Optional. Passthrough to the underlying Slider()
 public struct TaperSlider: View {
     @Binding var value:Double
     var pair:FunctionPair?
@@ -35,8 +42,6 @@ public struct TaperSlider: View {
             Text("Slider taper function unable to validate.")
         }
     }
-    
-    
 }
 
 
@@ -47,15 +52,9 @@ public struct TaperSlider: View {
 //}
 
 
-
-
-
-
-
 fileprivate extension Binding where Value == Double {
-    
-    
-    func customPair(_ functionPair:FunctionPair) -> Binding<Double> {
+    //Creates a binding that will smoothly update the slider based on the custom function pair.
+    func customTaper(_ functionPair:FunctionPair) -> Binding<Double> {
         Binding(
             get: {
                 let v = functionPair.function(self.wrappedValue)
@@ -71,16 +70,17 @@ fileprivate extension Binding where Value == Double {
     }
 }
 
+//TODO: Passthrough Label, ValueLabel
 fileprivate extension Slider where Label == EmptyView, ValueLabel == EmptyView {
     
-    
+    //Returns a slider with the alternate binding.
     static func withCustomTaper(
         value: Binding<Double>,
         withPair functionPair:FunctionPair,
         onEditingChanged: @escaping (Bool) -> Void = { _ in }
     ) -> Slider {
         return self.init(
-            value: value.customPair(functionPair),
+            value: value.customTaper(functionPair),
             in: functionPair.function(functionPair.domain.lowerBound) ... functionPair.function(functionPair.domain.upperBound),
             onEditingChanged: onEditingChanged
         )
