@@ -1,8 +1,8 @@
 //
-//  File.swift
+//  FunctionPair.swift
 //  
 //
-//  Created by Labtanza on 7/19/22.
+//  Created by Carlyn Maw on 7/19/22.
 //
 
 import Foundation

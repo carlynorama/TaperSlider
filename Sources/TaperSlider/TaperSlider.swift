@@ -3,10 +3,7 @@
 //
 //
 //  Created by Carlyn Maw on 7/15/22.
-//  License MIT
 //
-// Thanks to:
-// https://gist.github.com/prachigauriar/c508799bad359c3aa271ccc0865de231
 
 import SwiftUI
 

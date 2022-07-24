@@ -1,8 +1,8 @@
 //
-//  File.swift
+//  ClosedRange+Math.swift
 //  
 //
-//  Created by Labtanza on 7/19/22.
+//  Created by Carlyn Maw on 7/19/22.
 //
 
 import Foundation
@@ -55,7 +55,6 @@ extension ClosedRange where Bound == Double {
 //
 //    //What you'd need to map self to given range
 //    func transformValues(toBecome range:ClosedRange) -> (multiplier:Double, shift:Double){
-//       // let contantself.lowerBound - range.lowerBound
 //        let multiplier = range.span / self.span
 //        let constant = range.lowerBound - self.lowerBound
 //
@@ -63,7 +62,6 @@ extension ClosedRange where Bound == Double {
 //    }
 //
 //    func transformValues(from range:ClosedRange) -> (multiplier:Double, shift:Double){
-//       // let contantself.lowerBound - range.lowerBound
 //        let multiplier = self.span / range.span
 //        let constant = self.lowerBound - range.lowerBound
 //

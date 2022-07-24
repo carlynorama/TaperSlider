@@ -1,8 +1,8 @@
 //
-//  File.swift
+//  FuntionPair+Taper.swift
 //  
 //
-//  Created by Labtanza on 7/24/22.
+//  Created by Carlyn Maw on 7/24/22.
 //
 
 import Foundation
