@@ -1,18 +1,28 @@
 //
-//  File.swift
+//  Taper.swift
 //  
 //
 //  Created by Labtanza on 7/19/22.
 //
 
 import Foundation
-//Dependancy: FunctionPair
+//Dependency: FunctionPair
 
+///A data structure for how a taper will behave
 public struct TaperProfile {
     let style:TaperStyle
     var rangeOfInterest:ClosedRange<Double>?
     var inoutRange:ClosedRange<Double>?
     
+    ///The equation that will govern the taper's behavior.
+    ///
+    ///Built in taper behaviors
+    ///| Style Name  | Description, where x is the submitted value                          |
+    ///| ------------ | ------------------------------------- |
+    ///| `logp1`       | log(1+x)  |
+    ///| `expm1`        | eˣ-1        |
+    ///| `customlogbase(base:Double)`       |  logᵦ(x)  Where ß is the submitted base             |
+    ///| `dangereuse(pair:FunctionPair, isClamped:Bool)` | custom function pair, acknowledging whether it has been clamped to desired output range already.  |
     public enum TaperStyle {
         case logp1
         case expm1
@@ -21,6 +31,8 @@ public struct TaperProfile {
         case dangereuse(pair:FunctionPair, isClamped:Bool)
     }
 }
+
+//MARK: Default Behaviors
 
 extension TaperProfile.TaperStyle {
     var defaultRangeOfInterest:ClosedRange<Double> {
@@ -38,7 +50,9 @@ extension TaperProfile.TaperStyle {
             if isClamped {
                 return pair.domain
             } else {
-                return 1.0...9.0 // this is a dumb range.
+                // Needs to be the same as in defaultInoutRange below.
+                // Picked 1 to 2 because seems lower likelihood to have an asymptote.
+                return 1.0...2.0
             }
         }
     }
@@ -50,7 +64,7 @@ extension TaperProfile.TaperStyle {
             if isClamped {
                 return pair.domain
             } else {
-                return 1.0...9.0 // this is a dumb range. needs to be the same as in dRoI above.
+                return 0.0...1.0
             }
         default:
             return 0.0...1.0
@@ -58,36 +72,3 @@ extension TaperProfile.TaperStyle {
         
     }
 }
-//
-//enum TaperStyle {
-//    case linear
-//    case log
-//    case invlog
-//    case variaton(TaperProfile)
-//    case custom(FunctionPair)
-//    case currentTest
-//}
-//
-//extension TaperStyle {
-//    var functionPair:FunctionPair {
-//        switch self {
-//
-//        case .linear:
-//            return FunctionPair.linearPair
-//        case .log:
-//            return FunctionPair.favoriteLogCurvePair
-//        case .invlog:
-//            return FunctionPair.favoriteInvLogPair
-//        case .variaton(let profile):
-//            //TODO: Throw error instead of crash.
-//            return FunctionPair(profile: profile)!
-//        case .custom(let pair):
-//            return pair
-//        case .currentTest:
-//            //return FunctionPair.variableWidthLog(multiplier: 9.0)!
-//            //multiplier doesn't seem to make much of a diff on inverse.
-//            return FunctionPair.variableWidthLog1p(multiplier: 9.0)!
-//            //return FunctionPair.variableWidthLog(rangeOfInterest: 1...5)!
-//        }
-//    }
-//}

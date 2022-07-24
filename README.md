@@ -32,6 +32,7 @@ TaperSlider(
 ```
 
 or even with a cutom function pair:
+
 ```
 TaperSlider(
     value: $slider5Value,

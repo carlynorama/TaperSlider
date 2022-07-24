@@ -7,6 +7,9 @@
 
 import Foundation
 
+///Extension on Closed Range that makes some common math for working with ranges easier.
+//TODO: For Range and ClosedRange?
+//TODO: For Bounds in addition to Double? Worth the trouble? (Must be comparable, do division, etc)
 extension ClosedRange where Bound == Double {
     
     //Assumes lowerbound is infact the smaller number.
