@@ -14,9 +14,9 @@ fileprivate extension Double {
     }
 }
 
-///A pair that contains a function, it's inverse and the range for the numbers where the relationship is valid.
+///A struct that contains a function, it's inverse, and the range of numbers where the relationship is valid.
 ///
-///This struct is public to allow for the developer to create custom FunctionPair for their application. The initializer fails if the function and it's inverse aren't valid for the domain given.
+///This struct is public to allow a developer to create custom FunctionPairs for their application. The initializer fails if the function and it's inverse aren't valid for the domain given.
 ///The test  runs `inverse(function(value)) == value` for `domain.lowerbound`, `domain.upperbound` and 10 random values inside the domain.
 ///The function must be bijective for domain, i.e. for the sets of submitted values and result values: "each element of one set is paired with exactly one element of the other set, and each element of the other set is paired with exactly one element of the first set"
 public struct FunctionPair {
@@ -29,7 +29,7 @@ public struct FunctionPair {
     ///- Parameter function: function determining the rate of change as the slider increases.
     ///- Parameter inverse: function that is the inverse of the first parameter
     ///- Parameter domain: The range of numbers for which that relationship holds true.
-    init?(function:@escaping (Double) -> Double, inverse: @escaping (Double) -> Double, domain:ClosedRange<Double>) {
+    public init?(function:@escaping (Double) -> Double, inverse: @escaping (Double) -> Double, domain:ClosedRange<Double>) {
         
         if FunctionPair.testRelationship(function: function, inverse: inverse, domain: domain) {
             self.function = function
@@ -49,7 +49,7 @@ public struct FunctionPair {
     ///- Parameter domain: The range of numbers for which that relationship holds true.
     ///- Parameter rangeOfInterest: what part of the log function's curve should be the basis of the map
     ///- Parameter inoutRange: range of values that the function will take in and return
-    init?(function: @escaping (Double) -> Double, inverse: @escaping (Double) -> Double, domain:ClosedRange<Double>, rangeOfInterest:ClosedRange<Double>, inoutRange:ClosedRange<Double>) {
+    public init?(function: @escaping (Double) -> Double, inverse: @escaping (Double) -> Double, domain:ClosedRange<Double>, rangeOfInterest:ClosedRange<Double>, inoutRange:ClosedRange<Double>) {
         if let attemptedPair:FunctionPair = Self.clampedPair(function: function, inverse: inverse, domain: domain, rangeOfInterest: rangeOfInterest, inoutRange: inoutRange) {
             self = attemptedPair
         } else {
@@ -253,11 +253,11 @@ extension FunctionPair {
     }
     
     ///Returns a function pair built around this function pair mapped to an input/output range based on what part of this function pair's curve is most interesting.
-    func clampedPair(rangeOfInterest:ClosedRange<Double>, inoutRange:ClosedRange<Double>) -> FunctionPair? {
+    public func clampedPair(rangeOfInterest:ClosedRange<Double>, inoutRange:ClosedRange<Double>) -> FunctionPair? {
         FunctionPair.clampedPair(function: self.function, inverse: self.inverse, domain: self.domain, rangeOfInterest: rangeOfInterest, inoutRange: inoutRange)
     }
     
-    ///Returns a function pair built around submitted function pair mapped to an input/output range based on what part of the function pair's curve is most interesting.
+    ///Returns a function pair built around submitted function pair mapped to an input/output range based on what part of the function pair's curve is most interesting. A "Clamped Pair"
     static func clampedPair(for existingPair:FunctionPair, rangeOfInterest:ClosedRange<Double>, inoutRange:ClosedRange<Double>) -> FunctionPair? {
         clampedPair(function: existingPair.function, inverse: existingPair.inverse, domain: existingPair.domain, rangeOfInterest: rangeOfInterest, inoutRange: inoutRange)
     }

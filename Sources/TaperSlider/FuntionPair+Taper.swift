@@ -14,7 +14,7 @@ extension FunctionPair {
     ///
     ///A slider binding takes only a ClampedPair. The input range == the output range, but the segment of the FunctionPair's curve being used is independent of that inoutRange. This function takes in a taper profile to create the pair.
     ///- Parameter profile: a ``TaperProfile``
-    init?(profile: TaperProfile) {
+    public init?(profile: TaperProfile) {
         let iorange = profile.inoutRange ?? profile.style.defaultInoutRange
         let functionrange = profile.rangeOfInterest ?? profile.style.defaultRangeOfInterest
         

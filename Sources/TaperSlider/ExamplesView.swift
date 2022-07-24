@@ -31,7 +31,8 @@ struct ExamplesView: View {
                 value: $slider3Value,
                 outputRange: 1...10,
                 taperStyle:  .custominvlogbase(base: 3),
-                taperInputRange: 0.5...1.2)
+                taperInputRange: -0.5...1.2
+            )
             
             
             Text("Slider 4 Value: \(slider4Value)")

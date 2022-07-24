@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-///A wrapper around Slider() that takes a TaperProfile to create a variable stride.
+///A wrapper around Slider() that takes a TaperProfile to create a variable stride slider control.
 ///
 ///
 ///- Parameter value:A binding to the value to be updated by the slider.
