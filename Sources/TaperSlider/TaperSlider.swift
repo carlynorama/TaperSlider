@@ -17,9 +17,9 @@ public struct TaperSlider: View {
 
     var onEditingChanged: (Bool) -> Void
     
-    public init(value:Binding<Double>, in range: ClosedRange<Double>? = nil, taperStyle:TaperProfile.TaperStyle, taperRange:ClosedRange<Double>? = nil, onEditingChanged: @escaping (Bool) -> Void = { _ in }) {
+    public init(value:Binding<Double>, outputRange range: ClosedRange<Double>? = nil, taperStyle:TaperProfile.TaperStyle, taperInputRange:ClosedRange<Double>? = nil, onEditingChanged: @escaping (Bool) -> Void = { _ in }) {
        
-        let profile = TaperProfile(style: taperStyle, rangeOfInterest: taperRange, inoutRange: range)
+        let profile = TaperProfile(style: taperStyle, rangeOfInterest: taperInputRange, inoutRange: range)
         let attemptedPair = FunctionPair(profile: profile)
         
         pair = attemptedPair
