@@ -17,17 +17,17 @@ extension ClosedRange where Bound == Double {
         upperBound - lowerBound
     }
     
-    var signedspan:Bound {
-        upperBound.magnitude - lowerBound.magnitude
-    }
+//    var signedspan:Bound {
+//        upperBound.magnitude - lowerBound.magnitude
+//    }
     
     var distanceFromZero:Bound {
         lowerBound.magnitude
     }
     
-    var midpoint:Bound {
-        signedspan/2 + lowerBound
-    }
+//    var midpoint:Bound {
+//        signedspan/2 + lowerBound
+//    }
     
     func normalizedValue(_ value:Bound) -> Bound {
         (value - lowerBound)/span
