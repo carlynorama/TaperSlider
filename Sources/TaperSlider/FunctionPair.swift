@@ -83,7 +83,7 @@ public struct FunctionPair {
         
         let fr = function(testCase)
         let ir = inverse(fr)
-        print("for value \(testCase), function returns \(fr), inverse returns \(ir)")
+        //print("for value \(testCase), function returns \(fr), inverse returns \(ir)")
         if !(inverse(function(testCase))).fuzzyMatch(testCase) {
             return false
         }
@@ -188,7 +188,7 @@ extension FunctionPair {
                 print("value submitted is out side the bounds of \(inoutRange.lowerBound) and \(inoutRange.upperBound)")
             }
             let valueToSubmit = rangeOfInterest.valueForNormal(normalizedValue)//(value - constant)/scale
-            print("Submitted Value: \(valueToSubmit)")
+            //print("Submitted Value: \(valueToSubmit)")
             return function(valueToSubmit)
         }
         
