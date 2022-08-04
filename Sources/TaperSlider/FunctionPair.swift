@@ -194,7 +194,7 @@ extension FunctionPair {
         
         func myVariableBaseInverse(value:Double) -> Double {
             let returnValue = inverse(value)
-            print("Returned Value: \(returnValue)")
+            //print("Returned Value: \(returnValue)")
             let shiftBack = rangeOfInterest.normalizedValue(returnValue)
             let expandIntoRange = inoutRange.valueForNormal(shiftBack)
             
@@ -239,7 +239,7 @@ extension FunctionPair {
         
         func myVariableBaseInverse(value:Double) -> Double {
             let returnValue = expm1(value)
-            print("Returned Value: \(returnValue)")
+            //print("Returned Value: \(returnValue)")
             let shiftBack = rangeOfInterest.normalizedValue(returnValue)
             let expandIntoRange = inoutRange.valueForNormal(shiftBack)
             
