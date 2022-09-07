@@ -81,8 +81,8 @@ public struct FunctionPair {
     private static func runTest(_ testCase:Double, function:(Double) -> Double, inverse: (Double) -> Double) -> Bool {
         let result = true
         
-        let fr = function(testCase)
-        let ir = inverse(fr)
+//        let fr = function(testCase)
+//        let ir = inverse(fr)
         //print("for value \(testCase), function returns \(fr), inverse returns \(ir)")
         if !(inverse(function(testCase))).fuzzyMatch(testCase) {
             return false
